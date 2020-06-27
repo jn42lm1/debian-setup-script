@@ -1,0 +1,198 @@
+
+
+                  ██████╗ ███████╗██████╗ ██╗ █████╗ ███╗   ██╗                 
+                  ██╔══██╗██╔════╝██╔══██╗██║██╔══██╗████╗  ██║                 
+                  ██║  ██║█████╗  ██████╔╝██║███████║██╔██╗ ██║                 
+                  ██║  ██║██╔══╝  ██╔══██╗██║██╔══██║██║╚██╗██║                 
+                  ██████╔╝███████╗██████╔╝██║██║  ██║██║ ╚████║                 
+                  ╚═════╝ ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝                 
+
+                                Clean and Simple                                
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+[1m[32m                             Setup Package Manager[0m
+
+
+                      Ensure Everything is Setup Correctly
+
+Update package list                      [1m[32mDONE[0m
+Download & install updates               [1m[32mDONE[0m
+Remove unused packages                   [1m[32mDONE[0m
+Fix broken packages (if any)             [1m[32mDONE[0m
+
+                            Install System Packages
+
+wget                                     [1m[32mDONE[0m
+curl                                     [1m[32mDONE[0m
+xdg-utils                                [1m[32mDONE[0m
+dconf-editor                             [1m[32mDONE[0m
+gnome-tweaks                             [1m[32mDONE[0m
+
+                                Remove Bloatware
+
+firefox-esr                              [1m[32mDONE[0m
+chromium                                 [1m[32mDONE[0m
+debian-reference-common                  [1m[32mDONE[0m
+cheese                                   [1m[32mDONE[0m
+evolution                                [1m[32mDONE[0m
+libreoffice-common                       [1m[32mDONE[0m
+lightsoff                                [1m[32mDONE[0m
+khmerconverter                           [1m[32mDONE[0m
+aisleriot                                [1m[32mDONE[0m
+anthy                                    [1m[32mDONE[0m
+kasumi                                   [1m[32mDONE[0m
+five-or-more                             [1m[32mDONE[0m
+four-in-a-row                            [1m[32mDONE[0m
+goldendict                               [1m[32mDONE[0m
+hitori                                   [1m[32mDONE[0m
+iagno                                    [1m[32mDONE[0m
+gnome-chess                              [1m[32mDONE[0m
+gnome-klotski                            [1m[32mDONE[0m
+gnome-mahjongg                           [1m[32mDONE[0m
+gnome-maps                               [1m[32mDONE[0m
+gnome-music                              [1m[32mDONE[0m
+gnome-mines                              [1m[32mDONE[0m
+gnome-nibbles                            [1m[32mDONE[0m
+gnome-robots                             [1m[32mDONE[0m
+gnome-taquin                             [1m[32mDONE[0m
+gnome-tetravex                           [1m[32mDONE[0m
+gnome-sudoku                             [1m[32mDONE[0m
+gnome-todo                               [1m[32mDONE[0m
+mozc-utils-gui                           [1m[32mDONE[0m
+mozc-data                                [1m[32mDONE[0m
+mozc-server                              [1m[32mDONE[0m
+mlterm                                   [1m[32mDONE[0m
+quadrapassel                             [1m[32mDONE[0m
+rhythmbox                                [1m[32mDONE[0m
+shotwell                                 [1m[32mDONE[0m
+simple-scan                              [1m[32mDONE[0m
+swell-foop                               [1m[32mDONE[0m
+tali                                     [1m[32mDONE[0m
+thunderbird                              [1m[32mDONE[0m
+transmission-gtk                         [1m[32mDONE[0m
+xterm                                    [1m[32mDONE[0m
+xiterm+thai                              [1m[32mDONE[0m
+totem                                    [1m[32mDONE[0m
+hdate-applet                             [1m[32mDONE[0m
+vim-common                               [1m[32mDONE[0m
+
+                                    Clean Up
+
+Remove empty cache folders               [1m[32mDONE[0m
+Remove empty config folders              [1m[32mDONE[0m
+
+--------------------------------------------------------------------------------
+
+[1m[32m                            Install Apps & Services[0m
+
+
+                                    Web Apps
+
+calendar                                 [1m[32mDONE[0m
+drive                                    [1m[32mDONE[0m
+gmail                                    [1m[32mDONE[0m
+keep                                     [1m[32mDONE[0m
+maps                                     [1m[32mDONE[0m
+photos                                   [1m[32mDONE[0m
+trello                                   [1m[32mDONE[0m
+youtube                                  [1m[32mDONE[0m
+
+                                  Desktop Apps
+
+Chrome                                   [1m[32mDONE[0m
+Discord                                  [1m[32mDONE[0m
+Insomnia                                 [1m[32mDONE[0m
+Minecraft                                [1m[32mDONE[0m
+Steam                                    [1m[32mDONE[0m
+Teams                                    [1m[32mDONE[0m
+VSCode                                   [1m[32mDONE[0m
+
+                                    Sevices
+
+Git                                      [1m[32mDONE[0m
+Node                                     [1m[32mDONE[0m
+NordVPN                                  [1m[32mDONE[0m
+
+--------------------------------------------------------------------------------
+
+[1m[32m                            Make things look pretty[0m
+
+
+                               Install Extensions
+
+Dash to Panel                            [1m[32mDONE[0m
+Arc Menu                                 [1m[32mDONE[0m
+App Folders                              [1m[32mDONE[0m
+Show Desktop Icons                       [1m[32mDONE[0m
+Start Overlay in App View                [1m[32mDONE[0m
+Escape to Close Overlay                  [1m[32mDONE[0m
+NordVPN Status                           [1m[32mDONE[0m
+
+                                 Install Themes
+
+Vimix                                    [1m[32mDONE[0m
+
+                               Install Icon Sets
+
+Papirus                                  [1m[32mDONE[0m
+
+                                 Setup App Grid
+
+Create app folders                       [1m[32mDONE[0m
+Add apps to /Development                 [1m[32mDONE[0m
+Add apps to /Games                       [1m[32mDONE[0m
+Add apps to /System                      [1m[32mDONE[0m
+Add apps to /Utilities                   [1m[32mDONE[0m
+Set app favourites                       [1m[32mDONE[0m
+
+                                Configure Shell
+
+Show date on clock                       [1m[32mDONE[0m
+Show minimize/maximise buttons           [1m[32mDONE[0m
+Set background                           [1m[32mDONE[0m
+Set screensaver                          [1m[32mDONE[0m
+
+                             Configure Terminal App
+
+Hide menu bar                            [1m[32mDONE[0m
+Apply dark theme                         [1m[32mDONE[0m
+Dark grey background                     [1m[32mDONE[0m
+Light-gray font                          [1m[32mDONE[0m
+
+                              Configure Files App
+
+Show location bar                        [1m[32mDONE[0m
+Double click to open                     [1m[32mDONE[0m
+Icon view                                [1m[32mDONE[0m
+Show symlink button                      [1m[32mDONE[0m
+Sort folders before files                [1m[32mDONE[0m
+
+                           Remove Content Directories
+
+Activate desktop                         [1m[32mDONE[0m
+Remove content directories               [1m[32mDONE[0m
+
+--------------------------------------------------------------------------------
+
+[1m[32m                            Mount NVME Storage Drive[0m
+
+Create mount point                       [1m[32mDONE[0m
+Adding mount to desktop folder           [1m[32mDONE[0m
+Automount exists in FSTAB                [1m[32mDONE[0m
+
+--------------------------------------------------------------------------------
+
+[1m[32m                             Install NVidia Drivers[0m
+
+Register package source                  [1m[32mDONE[0m
+Install driver                           [1m[32mDONE[0m
+Verify driver                            [1m[32mDONE[0m
+
+--------------------------------------------------------------------------------
+
+[1m[32m                                   ALL DONE![0m
+

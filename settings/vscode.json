@@ -1,0 +1,13 @@
+{
+    "window.titleBarStyle": "custom",
+    "editor.fontSize": 12,
+    "debug.console.fontSize": 12,
+    "markdown.preview.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "window.zoomLevel": 0.7,
+    "window.newWindowDimensions": "maximized",
+    "editor.insertSpaces": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "explorer.openEditors.visible": 0
+}
