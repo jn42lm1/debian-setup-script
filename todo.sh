@@ -1,6 +1,7 @@
+# Set GIT user
 
-
-
+git config --global user.name "First Last"
+git config --global user.email "example@example.com"
 
 
 #

@@ -448,14 +448,14 @@ mountNVMEStorage()
 	# https://www.linuxbabe.com/desktop-linux/how-to-automount-file-systems-on-linux
 	
 	# Set the drive to mount.
-	MOUNT_NAME="nvme0n1p3"
+	MOUNT_NAME="nvme0n1p1"
 
 	# Lookup the UUID & filesystem type for the automount drive.	
 	NVME_UUID=$(sudo blkid -s UUID -o value /dev/$MOUNT_NAME)
-	NVME_TYPE=$(sudo blkid -s TYPE -o value /dev/$MOUNT_NAME)
 
 	# Configure the FSTAB auto-mount entry.
-	NVME_FSTAB="UUID=$NVME_UUID  /mnt/$MOUNT_NAME  $NVME_TYPE  defaults  0  2"
+	NVME_FSTAB="UUID=$NVME_UUID /mnt/$MOUNT_NAME    auto nosuid,nodev,nofail,x-gvfs-show 0 0"
+
 
 	# Create a mounting point directory for the drive.
 	startRun "Create mount point"
@@ -464,7 +464,7 @@ mountNVMEStorage()
 
 	# Symlink the mounting point directory to the home folder.
 	startRun "Adding mount to desktop folder"
-		ln -s -f /mnt/nvme0n1p3/ $HOME/Desktop/Content
+		ln -s -f /mnt/$MOUNT_NAME/ $HOME/Desktop/Content
 	endRun
 
 	# Write the automount instruction for the drive to FSTAB.
@@ -1064,7 +1064,6 @@ if [ $REMOVE_BLOATWARE = true ]; then
 	uninstallAPT "firefox-esr"
 	uninstallAPT "chromium"
 	uninstallAPT "debian-reference-common"
-	uninstallAPT "cheese"
 	uninstallAPT "evolution"
 	uninstallAPT "libreoffice-common"
 	uninstallAPT "lightsoff"
