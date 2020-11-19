@@ -3,6 +3,32 @@
 git config --global user.name "First Last"
 git config --global user.email "example@example.com"
 
+# Get ESO to work
+
+	# manually - run this, then enable the mozilla/twathe certificates
+	sudo dpkg-reconfigure ca-certificates 
+
+	# automated
+	# maybe need to run this (unsure): sudo dpkg -i ca-certificates_20190110_all.deb
+	sudo nano /etc/ca-certificates.conf
+	#remove ! from all 3 the mozilla/thawte certificate lines
+	#custom/thawte_Primary_Root_CA.crt
+	#custom/thawte_Primary_Root_CA_-_G2.crt
+	#custom/thawte_Primary_Root_CA_-_G3.crt
+	sudo update-ca-certificates
+	#disable esync launch variable?
+	#proton version 4?
+
+sudo cp -r certificates/custom /usr/share/ca-certificates
+
+sudo nano /etc/ca-certificates.conf
+#add these 3 lines
+#custom/thawte_Primary_Root_CA.crt
+#custom/thawte_Primary_Root_CA_-_G2.crt
+#custom/thawte_Primary_Root_CA_-_G3.crt
+
+sudo update-ca-certificates
+
 
 #
 # Speed up boot-loader

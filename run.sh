@@ -588,6 +588,25 @@ desktopMinecraft()
 	endRun
 }
 
+desktopMongoDBCompass()
+{
+	PACKAGE_URL="https://downloads.mongodb.com/compass/mongodb-compass_1.23.0_amd64.deb"
+	PACKAGE_PATH="packages/mongodb-compass.deb"
+
+	startRun "MongoDB Compass"
+
+		# Download the package installer if it was not pre-shipped with the script.
+		if [ ! -f "$PACKAGE_PATH" ]; then
+			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
+		fi
+		
+		# Install the package & it's dependencies.
+		sudo dpkg -i $PACKAGE_PATH 2>&1
+		sudo apt-get -y -f install
+
+	endRun
+}
+
 desktopSteam()
 {
 	# Read the following to learn more:
@@ -1140,6 +1159,7 @@ if [ $INSTALL_DESKTOP_APPS = true ]; then
 	installDesktopApp "desktopDiscord"
 	installDesktopApp "desktopInsomnia"
 	installDesktopApp "desktopMinecraft"
+	installDesktopApp "desktopMongoDBCompass"
 	installDesktopApp "desktopSteam"
 	installDesktopApp "desktopTeams"
 	installDesktopApp "desktopVSCode"
