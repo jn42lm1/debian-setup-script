@@ -328,7 +328,7 @@ setupAppGrid()
 	startRun "Add apps to /Development"
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ name ' Development '
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ categories "[]"
-		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ apps "['insomnia.desktop', 'code.desktop']"	
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ apps "['insomnia.desktop', 'code.desktop', 'omnidb-app.desktop', 'mongodb-compass.desktop', 'drawio.desktop', 'rpi-imager.desktop']"	
 	endRun
 
 	startRun "Add apps to /Games"
@@ -550,6 +550,25 @@ desktopDiscord()
 	endRun
 }
 
+desktopDrawIO()
+{
+	PACKAGE_URL="https://github.com/jgraph/drawio-desktop/releases/download/v13.9.9/draw.io-amd64-13.9.9.deb"
+	PACKAGE_PATH="packages/drawio.deb"
+
+	startRun "Draw.io"
+
+		# Download the package installer if it was not pre-shipped with the script.
+		if [ ! -f "$PACKAGE_PATH" ]; then
+			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
+		fi
+		
+		# Install the package & it's dependencies.
+		sudo dpkg -i $PACKAGE_PATH 2>&1
+		sudo apt-get -y -f install
+
+	endRun
+}
+
 desktopInsomnia()
 {
 	PACKAGE_URL="https://updates.insomnia.rest/downloads/ubuntu/latest"
@@ -727,7 +746,7 @@ serviceGit()
 
 serviceNode()
 {
-	NODEREPO="node_14.x"
+	NODEREPO="node_15.x"
 
 	startRun "Node"
 
@@ -1157,6 +1176,7 @@ if [ $INSTALL_DESKTOP_APPS = true ]; then
 
 	installDesktopApp "desktopChrome"
 	installDesktopApp "desktopDiscord"
+	installDesktopApp "desktopDrawIO"
 	installDesktopApp "desktopInsomnia"
 	installDesktopApp "desktopMinecraft"
 	installDesktopApp "desktopMongoDBCompass"
