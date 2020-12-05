@@ -569,6 +569,16 @@ desktopDrawIO()
 	endRun
 }
 
+desktopInkscape()
+{
+	startRun "GIMP"
+		
+		# Install the package & it's dependencies.
+		sudo apt-get -y install inkscape
+
+	endRun
+}
+
 desktopInsomnia()
 {
 	PACKAGE_URL="https://updates.insomnia.rest/downloads/ubuntu/latest"
@@ -1177,6 +1187,7 @@ if [ $INSTALL_DESKTOP_APPS = true ]; then
 	installDesktopApp "desktopChrome"
 	installDesktopApp "desktopDiscord"
 	installDesktopApp "desktopDrawIO"
+	installDesktopApp "desktopInkscape"
 	installDesktopApp "desktopInsomnia"
 	installDesktopApp "desktopMinecraft"
 	installDesktopApp "desktopMongoDBCompass"
