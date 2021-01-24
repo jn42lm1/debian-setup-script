@@ -21,9 +21,9 @@ CONFIGURE_TERMINAL=true
 CONFIGURE_FILES=true
 REMOVE_CONTENT_DIRECTORIES=true
 
-MOUNT_NVME=true
+MOUNT_NVME=false
 
-INSTALL_GPU_DRIVERS=true
+INSTALL_GPU_DRIVERS=false
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -164,6 +164,13 @@ aptSetup()
 
 	startRun "Fix broken packages (if any)"
 		sudo apt-get -y -f install
+	endRun
+}
+
+snapSetup()
+{
+	startRun "Install Snap CLI"
+		sudo apt install snapd
 	endRun
 }
 
@@ -322,13 +329,13 @@ installIconPack()
 setupAppGrid()
 {
 	startRun "Create app folders"
-		gsettings set org.gnome.desktop.app-folders folder-children "['Development', 'Games', 'System', 'Utilities']"
+		gsettings set org.gnome.desktop.app-folders folder-children "['Development', 'Games', 'Graphics', 'Office', 'System', 'Utilities']"
 	endRun
 
 	startRun "Add apps to /Development"
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ name ' Development '
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ categories "[]"
-		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ apps "['insomnia.desktop', 'code.desktop', 'omnidb-app.desktop', 'mongodb-compass.desktop', 'drawio.desktop', 'rpi-imager.desktop']"	
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Development/ apps "['android-studio.desktop', 'insomnia.desktop', 'insomnia-designer.desktop', 'code.desktop', 'omnidb-app.desktop', 'mongodb-compass.desktop', 'rpi-imager.desktop', 'jetbrains-studio.desktop', 'code_code.desktop', 'rpi-imager_rpi-imager.desktop']"
 	endRun
 
 	startRun "Add apps to /Games"
@@ -337,10 +344,22 @@ setupAppGrid()
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Games/ apps "['minecraft-launcher.desktop', 'steam.desktop']"
 	endRun
 
+	startRun "Add apps to /Graphics"
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ name ' Graphics '
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ categories "[]"
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Graphics/ apps "['inkscape.desktop', 'drawio.desktop', 'pinta-james-carroll_pinta.desktop', 'vectr_vectr.desktop', 'inkscape_inkscape.desktop', 'gimp_gimp.desktop', 'drawio_drawio.desktop']"
+	endRun
+
+	startRun "Add apps to /Office"
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ name ' Graphics '
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ categories "[]"
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/Office/ apps "['libreoffice_base.desktop', 'libreoffice_calc.desktop', 'libreoffice_draw.desktop', 'libreoffice_impress.desktop', 'libreoffice_math.desktop', 'libreoffice_writer.desktop', 'libreoffice-base.desktop', 'libreoffice_libreoffice.desktop']"
+	endRun
+
 	startRun "Add apps to /System"
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ name ' System '
 		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ categories "[]"
-		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ apps "['eog.desktop', 'org.gnome.SoundRecorder.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.Software.desktop', 'software-properties-gnome.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Weather.Application.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Evince.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Nautilus.desktop']"
+		gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/System/ apps "['eog.desktop', 'org.gnome.SoundRecorder.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.Software.desktop', 'software-properties-gnome.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Weather.Application.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Evince.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_snap-store.desktop']"
 	endRun
 
 	startRun "Add apps to /Utilities"
@@ -350,7 +369,7 @@ setupAppGrid()
 	endRun
 
 	startRun "Set app favourites"
-		gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'gmail.desktop', 'calendar.desktop', 'keep.desktop', 'trello.desktop', 'drive.desktop', 'photos.desktop', 'youtube.desktop', 'google-chrome.desktop', 'code.desktop', 'org.gnome.Terminal.desktop', 'steam.desktop']"
+		gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'gmail.desktop', 'calendar.desktop', 'keep.desktop', 'trello.desktop', 'drive.desktop', 'photos.desktop', 'youtube.desktop', 'google-chrome.desktop', 'code_code.desktop', 'org.gnome.Terminal.desktop', 'steam.desktop']"
 	endRun
 }
 
@@ -436,9 +455,9 @@ removeContentDirectories()
 		xdg-user-dirs-update --set MUSIC $HOME/
 		xdg-user-dirs-update --set PICTURES $HOME/
 		xdg-user-dirs-update --set VIDEOS $HOME/
-		rm -fd ~/Music
-		rm -fd ~/Pictures
-		rm -fd ~/Videos
+		rm -fd $HOME/Music
+		rm -fd $HOME/Pictures
+		rm -fd $HOME/Videos
 	endRun
 }
 
@@ -511,6 +530,50 @@ installNvidiaDrivers()
 
 # ---------------------------------------------------------------------------------------------------------------------
 
+desktopAndroidStudio()
+{
+	PACKAGE_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/4.1.1.0/android-studio-ide-201.6953283-linux.tar.gz"
+	PACKAGE_PATH="packages/android-studio.deb"
+
+	startRun "Android Studio"
+
+		# Download the package installer if it was not pre-shipped with the script.
+		if [ ! -f "$PACKAGE_PATH" ]; then
+			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
+		fi
+		
+		# Install the package & it's dependencies.
+		sudo tar -xf $PACKAGE_PATH -C /opt
+
+		# Create a manual desktop icon for Android Studio.
+		cat > $HOME/.local/share/applications/android-studio.desktop <<EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Android Studio
+Icon=/opt/android-studio/bin/studio.svg
+Exec="/opt/android-studio/bin/studio.sh" %f
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-studio
+Name[en_GB]=android-studio.desktop
+...
+EOL
+
+		# Set path variable for Android Studio.
+		cp ./settings/.profile $HOME/.profile
+
+	endRun
+}
+
+desktopBitWarden()
+{
+	startRun "Bit Warden"
+		sudo snap install bitwarden
+	endRun
+}
+
 desktopChrome()
 {
 	# Read the following to learn more:
@@ -533,20 +596,8 @@ desktopChrome()
 
 desktopDiscord()
 {
-	PACKAGE_URL="https://discordapp.com/api/download?platform=linux&format=deb"
-	PACKAGE_PATH="packages/discord.deb"
-
 	startRun "Discord"
-
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-		
-		# Install the package & it's dependencies.
-		sudo dpkg -i $PACKAGE_PATH 2>&1
-		sudo apt-get -y -f install
-
+		sudo snap install discord
 	endRun
 }
 
@@ -569,32 +620,38 @@ desktopDrawIO()
 	endRun
 }
 
-desktopInkscape()
+desktopGIMP()
 {
 	startRun "GIMP"
-		
-		# Install the package & it's dependencies.
-		sudo apt-get -y install inkscape
-
+		sudo snap install gimp
 	endRun
 }
 
-desktopInsomnia()
+desktopInkscape()
 {
-	PACKAGE_URL="https://updates.insomnia.rest/downloads/ubuntu/latest"
-	PACKAGE_PATH="packages/insomnia.deb"
+	startRun "Inkscape"
+		sudo snap install inkscape
+	endRun
+}
 
-	startRun "Insomnia"
+desktopInsomniaCore()
+{
+	startRun "Insomnia Core"
+		sudo snap install insomnia
+	endRun
+}
 
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-		
-		# Install the package & it's dependencies.
-		sudo dpkg -i $PACKAGE_PATH 2>&1
-		sudo apt-get -y -f install
+desktopInsomniaDesigner()
+{
+	startRun "Insomnia Designer"
+		sudo snap install insomnia-designer
+	endRun
+}
 
+desktopLibreOffice()
+{
+	startRun "Libre Office"
+		sudo snap install libreoffice
 	endRun
 }
 
@@ -636,6 +693,27 @@ desktopMongoDBCompass()
 	endRun
 }
 
+desktopPinta()
+{
+	startRun "Pinta"
+		sudo snap install pinta-james-carroll
+	endRun
+}
+
+desktopRaspberryPiImager()
+{
+	startRun "Raspberry Pi Imager"
+		sudo snap install rpi-imager
+	endRun
+}
+
+desktopSnapStore()
+{
+	startRun "Snap Store"
+		sudo snap install snap-store
+	endRun
+}
+
 desktopSteam()
 {
 	# Read the following to learn more:
@@ -672,76 +750,22 @@ desktopSteam()
 
 desktopTeams()
 {
-	PACKAGE_URL="https://go.microsoft.com/fwlink/p/?linkid=2112886"
-	PACKAGE_PATH="packages/teams.deb"
-
 	startRun "Teams"
+		sudo snap install teams
+	endRun
+}
 
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-		
-		# Install the package & it's dependencies.
-		sudo dpkg -i $PACKAGE_PATH 2>&1
-		sudo apt-get -y -f install
-
+desktopVectr()
+{
+	startRun "Vectr"
+		sudo snap install vectr
 	endRun
 }
 
 desktopVSCode()
 {
-	PACKAGE_URL="https://go.microsoft.com/fwlink/?LinkID=760868"
-	PACKAGE_PATH="packages/vscode.deb"
-
 	startRun "VSCode"
-
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-		
-		# Install the package & it's dependencies.
-		sudo dpkg -i $PACKAGE_PATH 2>&1
-		sudo apt-get -y -f install
-
-		# Configure default settings
-		mkdir -p $HOME/.config/Code/User
-		cp ./settings/vscode.json $HOME/.config/Code/User/settings.json
-
-	endRun
-}
-
-desktopGIMP()
-{
-	startRun "GIMP"
-		
-		# Install the package & it's dependencies.
-		sudo apt-get -y install gimp
-
-	endRun
-}
-
-desktopRaspberryPiImager()
-{
-	PACKAGE_URL="https://downloads.raspberrypi.org/imager/imager_amd64.deb"
-	PACKAGE_PATH="packages/raspberryPiImager.deb"
-
-	startRun "Raspberry Pi Imager"
-
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-		
-		# Install the package & it's dependencies.
-		sudo dpkg -i $PACKAGE_PATH 2>&1
-		sudo apt-get -y -f install
-
-		# Configure default settings
-		mkdir -p $HOME/.config/Code/User
-		cp ./settings/vscode.json $HOME/.config/Code/User/settings.json
-
+		sudo snap install code --classic
 	endRun
 }
 
@@ -792,7 +816,6 @@ serviceNordvpn()
 		sudo apt-get -y install nordvpn
 
 	endRun
-
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -800,7 +823,7 @@ serviceNordvpn()
 extensionDashToPanel()
 {
 	# Get the package ID and URL.
-	PACKAGE_URL="https://extensions.gnome.org/extension-data/dash-to-paneljderose9.github.com.v35.shell-extension.zip"
+	PACKAGE_URL="https://extensions.gnome.org/extension-data/dash-to-paneljderose9.github.com.v40.shell-extension.zip"
 	PACKAGE_PATH="extensions/dash-to-panel.zip"
 	
 	startRun "Dash to Panel"
@@ -818,6 +841,7 @@ extensionDashToPanel()
 		unzip -q -o $PACKAGE_PATH -d $HOME/.local/share/gnome-shell/extensions/$EXTENSTION_UUID
 
 		# Enable or reload the extension.
+		echo $EXTENSTION_UUID
 		gnome-shell-extension-tool -e $EXTENSTION_UUID || gnome-shell-extension-tool -r $EXTENSTION_UUID
 
 		# Load the extension configuration into DConf.
@@ -828,7 +852,7 @@ extensionDashToPanel()
 extensionArcMenu()
 {
 	# Get the package ID and URL.
-	PACKAGE_URL="https://extensions.gnome.org/extension-data/arc-menulinxgem33.com.v42.shell-extension.zip"
+	PACKAGE_URL="https://extensions.gnome.org/extension-data/arc-menulinxgem33.com.v49.shell-extension.zip"
 	PACKAGE_PATH="extensions/arc-menu.zip"
 	
 	startRun "Arc Menu"
@@ -961,7 +985,7 @@ extensionShowDesktopIcons()
 extensionNordvpnStatus()
 {
 	# Get the package ID and URL.
-	PACKAGE_URL="https://extensions.gnome.org/extension-data/nordvpn_statusjcmartinez.dev.v5.shell-extension.zip"
+	PACKAGE_URL="https://extensions.gnome.org/extension-data/nordvpn_statusjcmartinez.dev.v7.shell-extension.zip"
 	PACKAGE_PATH="extensions/nordvpn-status.zip"
 	
 	startRun "NordVPN Status"
@@ -1090,6 +1114,7 @@ if [ $INITIALISE_PACKAGE_MANAGER = true ]; then
 	printTitle "Ensure Everything is Setup Correctly"
 
 	aptSetup
+	snapSetup
 
 fi
 
@@ -1170,14 +1195,14 @@ if [ $INSTALL_WEB_APPS = true ]; then
 
 	printTitle "Web Apps"
 
-	installWebApp "calendar"
-	installWebApp "drive"
-	installWebApp "gmail"
-	installWebApp "keep"
-	installWebApp "maps"
-	installWebApp "photos"
-	installWebApp "trello"
-	installWebApp "youtube"
+	#installWebApp "calendar"
+	#installWebApp "drive"
+	#installWebApp "gmail"
+	#installWebApp "keep"
+	#installWebApp "maps"
+	#installWebApp "photos"
+	#installWebApp "trello"
+	#installWebApp "youtube"
 fi
 
 if [ $INSTALL_DESKTOP_APPS = true ]; then
@@ -1185,17 +1210,29 @@ if [ $INSTALL_DESKTOP_APPS = true ]; then
 	printTitle "Desktop Apps"
 
 	installDesktopApp "desktopChrome"
+	installDesktopApp "desktopSnapStore"
+	installDesktopApp "desktopBitWarden"
+	installDesktopApp "desktopLibreOffice"
+	
 	installDesktopApp "desktopDiscord"
+	installDesktopApp "desktopTeams"
+	
 	installDesktopApp "desktopDrawIO"
 	installDesktopApp "desktopInkscape"
-	installDesktopApp "desktopInsomnia"
-	installDesktopApp "desktopMinecraft"
-	installDesktopApp "desktopMongoDBCompass"
-	installDesktopApp "desktopSteam"
-	installDesktopApp "desktopTeams"
-	installDesktopApp "desktopVSCode"
 	installDesktopApp "desktopGIMP"
+	installDesktopApp "desktopPinta"
+	installDesktopApp "desktopVectr"
+	
+	installDesktopApp "desktopVSCode"
+	installDesktopApp "desktopInsomniaCore"
+	installDesktopApp "desktopInsomniaDesigner"
+	installDesktopApp "desktopMongoDBCompass"
 	installDesktopApp "desktopRaspberyPiImager"
+	installDesktopApp "desktopAndroidStudio"
+
+	installDesktopApp "desktopSteam"
+	installDesktopApp "desktopMinecraft"
+
 fi
 
 if [ $INSTALL_SERVICES = true ]; then
