@@ -468,7 +468,7 @@ themeVimix()
 {
 	# Get the package ID and URL.
 	PACKAGE_ID="vimix-gtk-themes"
-	PACKAGE_VERSION="2020-02-24"
+	PACKAGE_VERSION="2023-09-09"
 
 	ACTIVE_SET="vimix-doder"
 
@@ -503,77 +503,7 @@ iconsPapirus()
 {
 	# Get the package ID and URL.
 	PACKAGE_ID="papirus-icon-theme"
-	PACKAGE_VERSION="20200405"
-	
-	ACTIVE_SET="Papirus"
-
-	PACKAGE_URL="https://codeload.github.com/PapirusDevelopmentTeam/$PACKAGE_ID/zip/$PACKAGE_VERSION"
-	PACKAGE_PATH="icons/$PACKAGE_ID.zip"
-
-	startRun "Papirus"
-
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-
-		# Extract the icons package.
-		unzip -q -o $PACKAGE_PATH -d icons/$PACKAGE_ID
-
-		# Install the icons package.
-		./icons/$PACKAGE_ID/$PACKAGE_ID-$PACKAGE_VERSION/install.sh
-
-		# Activate the icon set.
-		gsettings set org.gnome.desktop.interface icon-theme $ACTIVE_SET
-
-		# Remove the extracted source folder.
-		rm -r icons/$PACKAGE_ID
-
-	endRun
-}
-
-# ---------------------------------------------------------------------------------------------------------------------
-
-themeVimix()
-{
-	# Get the package ID and URL.
-	PACKAGE_ID="vimix-gtk-themes"
-	PACKAGE_VERSION="2020-02-24"
-
-	ACTIVE_SET="vimix-doder"
-
-	PACKAGE_URL="https://codeload.github.com/vinceliuice/$PACKAGE_ID/zip/$PACKAGE_VERSION"
-	PACKAGE_PATH="themes/$PACKAGE_ID.zip"
-
-	startRun "Vimix"
-
-		# Download the package installer if it was not pre-shipped with the script.
-		if [ ! -f "$PACKAGE_PATH" ]; then
-			wget $PACKAGE_URL -O $PACKAGE_PATH -q --show-progress
-		fi
-
-		# Extract the theme package.
-		unzip -q -o $PACKAGE_PATH -d themes/$PACKAGE_ID
-
-		# Install the theme package.
-		./themes/$PACKAGE_ID/$PACKAGE_ID-$PACKAGE_VERSION/install.sh
-
-		# Activate the theme.
-		gsettings set org.gnome.desktop.interface gtk-theme $ACTIVE_SET
-
-		# Remove the extracted source folder.
-		rm -r themes/$PACKAGE_ID
-
-	endRun
-}
-
-# ---------------------------------------------------------------------------------------------------------------------
-
-iconsPapirus()
-{
-	# Get the package ID and URL.
-	PACKAGE_ID="papirus-icon-theme"
-	PACKAGE_VERSION="20200405"
+	PACKAGE_VERSION="20230901"
 	
 	ACTIVE_SET="Papirus"
 
